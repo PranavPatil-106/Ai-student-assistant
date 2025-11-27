@@ -33,12 +33,12 @@ cd ..
 
 echo.
 echo Starting Backend API (FastAPI)...
-start "Backend API" cmd /k "call venv\Scripts\activate.bat && cd backend && python -m uvicorn main:app --host 0.0.0.0 --port 8000 --reload"
+start "Backend API" cmd /k "cd /d %CD%\venv\Scripts && activate.bat && cd /d %CD%\backend && python -m uvicorn main:app --host 0.0.0.0 --port 8000 --reload"
 
 timeout /t 5 /nobreak > nul
 
 echo Starting Frontend (Streamlit)...
-start "Frontend Streamlit" cmd /k "call venv\Scripts\activate.bat && cd frontend && streamlit run streamlit_app.py --server.port 8501"
+start "Frontend Streamlit" cmd /k "cd /d %CD%\venv\Scripts && activate.bat && cd /d %CD%\frontend && python -m streamlit run streamlit_app.py --server.port 8501"
 
 echo.
 echo ============================================

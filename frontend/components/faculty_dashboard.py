@@ -16,7 +16,7 @@ def faculty_dashboard():
         if st.button("🚪 Sign Out", use_container_width=True):
             for key in list(st.session_state.keys()):
                 del st.session_state[key]
-            st.experimental_rerun()
+            st.rerun()
     
     st.markdown("---")
     
@@ -200,7 +200,7 @@ def faculty_dashboard():
                             st.session_state.preview_gen_type = "mcq"
                             st.session_state.preview_gen_count = 0
                             st.session_state.preview_gen_total = num_mcqs
-                            st.experimental_rerun()
+                            st.rerun()
                     
                     # Generate MCQs one by one
                     if st.session_state.preview_generating and st.session_state.preview_gen_type == "mcq":
@@ -233,7 +233,7 @@ def faculty_dashboard():
                                         if data["status"] == "success" and len(data["mcqs"]) > 0:
                                             st.session_state.preview_mcqs.append(data["mcqs"][0])
                                             st.session_state.preview_gen_count += 1
-                                            st.experimental_rerun()
+                                            st.rerun()
                                         else:
                                             st.error(data.get("message", "Failed to generate MCQ"))
                                             st.session_state.preview_generating = False
@@ -246,7 +246,7 @@ def faculty_dashboard():
                         else:
                             # Generation complete
                             st.session_state.preview_generating = False
-                            st.experimental_rerun()
+                            st.rerun()
                     
                     # Display all generated MCQs
                     if len(st.session_state.preview_mcqs) > 0:
@@ -281,7 +281,7 @@ def faculty_dashboard():
                             st.session_state.preview_gen_type = "flashcard"
                             st.session_state.preview_gen_count = 0
                             st.session_state.preview_gen_total = num_cards
-                            st.experimental_rerun()
+                            st.rerun()
                     
                     # Generate Flashcards one by one
                     if st.session_state.preview_generating and st.session_state.preview_gen_type == "flashcard":
@@ -314,7 +314,7 @@ def faculty_dashboard():
                                         if data["status"] == "success" and len(data["flashcards"]) > 0:
                                             st.session_state.preview_flashcards.append(data["flashcards"][0])
                                             st.session_state.preview_gen_count += 1
-                                            st.experimental_rerun()
+                                            st.rerun()
                                         else:
                                             st.error(data.get("message", "Failed to generate flashcard"))
                                             st.session_state.preview_generating = False
@@ -327,7 +327,7 @@ def faculty_dashboard():
                         else:
                             # Generation complete
                             st.session_state.preview_generating = False
-                            st.experimental_rerun()
+                            st.rerun()
                     
                     # Display all generated flashcards
                     if len(st.session_state.preview_flashcards) > 0:

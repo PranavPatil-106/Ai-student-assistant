@@ -15,7 +15,7 @@ def student_dashboard():
         if st.button("🚪 Sign Out", use_container_width=True):
             for key in list(st.session_state.keys()):
                 del st.session_state[key]
-            st.experimental_rerun()
+            st.rerun()
     
     st.markdown("---")
     
@@ -117,7 +117,7 @@ def student_dashboard():
                 st.session_state.quiz_answers = {}
                 st.session_state.answer_checked = False
                 st.session_state.selected_option = None
-                st.experimental_rerun()
+                st.rerun()
         
         # Active Quiz Section
         else:
@@ -166,7 +166,7 @@ def student_dashboard():
                                             'correct': False,
                                             'selected': None
                                         }
-                                    st.experimental_rerun()
+                                    st.rerun()
                                 else:
                                     st.error(data.get("message", "Failed to generate question"))
                             else:
@@ -210,7 +210,7 @@ def student_dashboard():
                             st.session_state.selected_option = selected
                             st.session_state.quiz_answers[current_q_num]['attempts'] += 1
                             st.session_state.quiz_answers[current_q_num]['selected'] = selected
-                            st.experimental_rerun()
+                            st.rerun()
                     
                     # Show result after checking
                     else:
@@ -302,7 +302,7 @@ def student_dashboard():
                                     st.session_state.quiz_current += 1
                                     st.session_state.answer_checked = False
                                     st.session_state.selected_option = None
-                                    st.experimental_rerun()
+                                    st.rerun()
                         else:
                             # Wrong answer - offer reattempt or next
                             st.warning(f"⚠️ Incorrect. Attempts so far: {attempts}")
@@ -312,7 +312,7 @@ def student_dashboard():
                                 if st.button("🔄 Reattempt", key=f"reattempt_{current_q_num}", use_container_width=True):
                                     st.session_state.answer_checked = False
                                     st.session_state.selected_option = None
-                                    st.experimental_rerun()
+                                    st.rerun()
                             
                             with col2:
                                 if st.button("Next Question ➡️", key=f"skip_{current_q_num}", use_container_width=True):
@@ -320,7 +320,7 @@ def student_dashboard():
                                     st.session_state.quiz_current += 1
                                     st.session_state.answer_checked = False
                                     st.session_state.selected_option = None
-                                    st.experimental_rerun()
+                                    st.rerun()
             
             # Quiz finished - show summary
             else:
@@ -383,7 +383,7 @@ def student_dashboard():
                     st.session_state.quiz_answers = {}
                     st.session_state.answer_checked = False
                     st.session_state.selected_option = None
-                    st.experimental_rerun()
+                    st.rerun()
     
     # Tab 3: Flashcards
     with tab3:
@@ -411,7 +411,7 @@ def student_dashboard():
                 st.session_state.flashcard_total = num_cards
                 st.session_state.flashcard_current = 1
                 st.session_state.flashcard_list = []
-                st.experimental_rerun()
+                st.rerun()
         
         # Active Flashcard Session
         else:
@@ -453,7 +453,7 @@ def student_dashboard():
                                 data = response.json()
                                 if data["status"] == "success" and len(data["flashcards"]) > 0:
                                     st.session_state.flashcard_list.append(data["flashcards"][0])
-                                    st.experimental_rerun()
+                                    st.rerun()
                                 else:
                                     st.error(data.get("message", "Failed to generate flashcard"))
                             else:
@@ -502,13 +502,13 @@ def student_dashboard():
                     with col1:
                         if st.button("🔄 Flip Card", key=f"flip_{current_card_num}", use_container_width=True):
                             st.session_state[flip_key] = not st.session_state[flip_key]
-                            st.experimental_rerun()
+                            st.rerun()
                     
                     with col2:
                         if st.button("Next Card ➡️", key=f"next_card_{current_card_num}", use_container_width=True):
                             # Move to next card
                             st.session_state.flashcard_current += 1
-                            st.experimental_rerun()
+                            st.rerun()
             
             # Session finished - show summary
             else:
@@ -538,7 +538,7 @@ def student_dashboard():
                     for key in list(st.session_state.keys()):
                         if key.startswith('card_flipped_'):
                             del st.session_state[key]
-                    st.experimental_rerun()
+                    st.rerun()
     
     # Tab 4: Ask Question
     with tab4:

@@ -71,7 +71,7 @@ def main():
             if st.button("Back to Login"):
                 for key in list(st.session_state.keys()):
                     del st.session_state[key]
-                st.experimental_rerun()
+                st.rerun()
 
 if __name__ == "__main__":
     main()

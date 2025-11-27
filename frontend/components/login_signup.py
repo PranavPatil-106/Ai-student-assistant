@@ -42,7 +42,7 @@ def login_signup_page():
                             st.session_state.role = data["role"]
                             st.session_state.logged_in = True
                             st.success(f"Welcome back, {data['full_name']}!")
-                            st.experimental_rerun()
+                            st.rerun()
                         else:
                             error_msg = "Login failed"
                             try:
@@ -93,7 +93,7 @@ def login_signup_page():
                             st.session_state.role = data["role"]
                             st.session_state.logged_in = True
                             st.success(f"Account created! Welcome, {data['full_name']}!")
-                            st.experimental_rerun()
+                            st.rerun()
                         else:
                             error_msg = "Signup failed"
                             try:
